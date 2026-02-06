@@ -6,6 +6,7 @@ public class EnemyAttributes : MonoBehaviour
 {
     private float CurrentHealth;
     public float MaxHealth;
+    private bool canTakeDamage = true;
 
     private void Start()
     {
@@ -17,10 +18,7 @@ public class EnemyAttributes : MonoBehaviour
         Debug.Log("Trigger entered");
         if (other.gameObject.GetComponent<ProjectileAttributes>())
         {
-            ProjectileAttributes attributes = other.gameObject.GetComponent<ProjectileAttributes>();
-            CurrentHealth = CurrentHealth - attributes.Damage;
-            Debug.Log("Damage recieved");
-            CheckHealth();
+            TakeDamage(other);
         }
     }
 
@@ -30,5 +28,23 @@ public class EnemyAttributes : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private void TakeDamage(Collider other)
+    {
+        if (canTakeDamage)
+        {
+            ProjectileAttributes attributes = other.gameObject.GetComponent<ProjectileAttributes>();
+            CurrentHealth = CurrentHealth - attributes.Damage;
+            Debug.Log("Damage recieved");
+            CheckHealth();
+            canTakeDamage = false;
+            Invoke("DamageCooldown", 1);
+        }
+    }
+
+    private void DamageCooldown()
+    {
+        canTakeDamage = true;
     }
 }
