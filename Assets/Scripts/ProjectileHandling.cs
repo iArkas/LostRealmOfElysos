@@ -6,6 +6,11 @@ public class ProjectileHandling : MonoBehaviour
 
     public void Awake()
     {
+        Invoke("Fire", 1);
+    }
+
+    public void Fire()
+    {
         rb.GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         rb.AddForce(transform.rotation * Vector3.forward * 1000f);
