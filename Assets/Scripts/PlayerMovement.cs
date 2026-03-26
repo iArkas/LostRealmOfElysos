@@ -1,3 +1,6 @@
+using System.Security;
+using UnityEditor.Rendering;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -15,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatIsGround;
     bool grounded;
     public float groundDrag;
+
+    bool playingSFX = false;
 
     private void Start()
     {
@@ -34,6 +39,20 @@ public class PlayerMovement : MonoBehaviour
             rb.linearDamping = 0;
 
         SpeedControl();
+
+        if (horizontalInput != 0 || verticalInput != 0)
+        {
+            if (playingSFX == false)
+            {
+                GetComponent<AudioSource>().Play();
+                playingSFX = true;
+            }
+        }
+        else
+        {
+            playingSFX = false;
+            GetComponent<AudioSource>().Stop();
+        }
     }
 
     private void FixedUpdate()
