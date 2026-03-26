@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
 
     public float playerHeight;
-    public LayerMask whatIsGround;
+    public LayerMask ground;
     bool grounded;
     public float groundDrag;
 
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
         if (grounded)
             rb.linearDamping = groundDrag;
         else
