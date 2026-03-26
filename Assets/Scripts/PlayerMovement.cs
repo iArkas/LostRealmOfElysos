@@ -2,14 +2,14 @@ using System.Security;
 using UnityEditor.Rendering;
 using UnityEditor.UI;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
     public Transform orientation;
 
-    float horizontalInput;
-    float verticalInput;
+    Vector2 moveVector;
 
     Vector3 moveDirection;
     Rigidbody rb;
@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask ground;
     bool grounded;
     public float groundDrag;
+
 
     bool playingSFX = false;
 
@@ -29,8 +30,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        InputAction moveAction = InputSystem.actions.FindAction("Move");
+        moveVector = moveAction.ReadValue<Vector2>();
 
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
         if (grounded)
@@ -40,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
         SpeedControl();
 
-        if (horizontalInput != 0 || verticalInput != 0)
+        if (moveVector.x != 0 || moveVector.y !=0)
         {
             if (playingSFX == false)
             {
@@ -62,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection = orientation.forward * moveVector.y + orientation.right * moveVector.x;
 
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
     }

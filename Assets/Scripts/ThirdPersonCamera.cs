@@ -4,7 +4,6 @@ public class ThirdPersonCamera : MonoBehaviour
 {
     public Transform orientation;
     public Transform player;
-    public Transform playerObj;
     public Rigidbody rb;
 
     public float rotationSpeed;
@@ -28,7 +27,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
         if (inputDir != Vector3.zero)
         {
-            playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+            player.forward = Vector3.Slerp(player.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
     }
 }
