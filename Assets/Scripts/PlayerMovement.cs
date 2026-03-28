@@ -1,3 +1,4 @@
+using System;
 using System.Security;
 using UnityEditor.Rendering;
 using UnityEditor.UI;
@@ -19,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     bool grounded;
     public float groundDrag;
 
+    public float jumpForce;
+
 
     bool playingSFX = false;
 
@@ -31,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         InputAction moveAction = InputSystem.actions.FindAction("Move");
+        InputAction jumpAction = InputSystem.actions.FindAction("Jump");
         moveVector = moveAction.ReadValue<Vector2>();
 
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
@@ -43,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveVector.x != 0 || moveVector.y !=0)
         {
-            if (playingSFX == false)
+            if (playingSFX == false || !grounded)
             {
                 GetComponent<AudioSource>().Play();
                 playingSFX = true;
@@ -53,6 +57,11 @@ public class PlayerMovement : MonoBehaviour
         {
             playingSFX = false;
             GetComponent<AudioSource>().Stop();
+        }
+
+        if (jumpAction.triggered)
+        {
+            Jump();
         }
     }
 
@@ -76,6 +85,15 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
+        }
+    }
+
+    private void Jump()
+    {
+        if (grounded)
+        {
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.y);
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         }
     }
 }
