@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,13 +10,15 @@ public class ThirdPersonCamera : MonoBehaviour
     public Transform player;
     public Rigidbody rb;
     public Transform combatOrientation;
+    public PlayerMovement playerMovement;
 
     public float rotationSpeed;
 
     public GameObject defaultCamera;
     public GameObject focusCamera;
+    private GameObject currentCamera;
 
-    public CameraStyle currentStyle;
+    public CameraStyle currentStyle = CameraStyle.Default;
 
     public enum CameraStyle
     {
@@ -27,13 +30,25 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;  
         Cursor.visible = false;
+        currentCamera = defaultCamera;
     }
 
     private void Update()
     {
         //rotate orientation
-        Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+        Vector3 viewDir = player.position - new Vector3(currentCamera.transform.position.x, player.position.y, currentCamera.transform.position.z);
         orientation.forward = viewDir.normalized;
+
+        //switch camera
+        InputAction aimAction = InputSystem.actions.FindAction("Aim");
+        if (aimAction.WasPressedThisFrame())
+        {
+            SwitchCameraStyle(CameraStyle.Focus);
+        }
+        else if (aimAction.WasReleasedThisFrame())
+        {
+            SwitchCameraStyle(CameraStyle.Default);
+        }
 
         //rotate player object
         if (currentStyle == CameraStyle.Default)
@@ -49,21 +64,10 @@ public class ThirdPersonCamera : MonoBehaviour
         }
         else if (currentStyle == CameraStyle.Focus)
         {
-            Vector3 dirToCombatOrientaiton = combatOrientation.position - new Vector3(transform.position.x, combatOrientation.position.y, transform.position.z);
+            Vector3 dirToCombatOrientaiton = combatOrientation.position - new Vector3(currentCamera.transform.position.x, combatOrientation.position.y, currentCamera.transform.position.z);
             orientation.forward = dirToCombatOrientaiton.normalized;
 
             player.forward = dirToCombatOrientaiton;
-        }
-
-        //switch camera
-        InputAction aimAction = InputSystem.actions.FindAction("Aim");
-        if (aimAction.WasPressedThisFrame())
-        {
-            Aiming(aimAction);
-        }
-        else if (aimAction.WasReleasedThisFrame())
-        {
-            Aiming(aimAction);
         }
     }
 
@@ -72,22 +76,20 @@ public class ThirdPersonCamera : MonoBehaviour
 
         defaultCamera.SetActive(false);
         focusCamera.SetActive(false);
-        Debug.Log(currentStyle);
 
-        if (newStyle == CameraStyle.Default) defaultCamera.SetActive(true);
-        if (newStyle == CameraStyle.Focus) focusCamera.SetActive(true);
-
-        currentStyle = newStyle;
-    }
-    private void Aiming(InputAction aimAction)
-    {
-        if (aimAction.IsPressed())
+        if (newStyle == CameraStyle.Default)
         {
-            SwitchCameraStyle(CameraStyle.Focus);
+            defaultCamera.SetActive(true);
+            currentCamera = defaultCamera;
+            currentStyle = CameraStyle.Default;
+            playerMovement.moveSpeed = 5f;
         }
-        else
+        if (newStyle == CameraStyle.Focus)
         {
-            SwitchCameraStyle(CameraStyle.Default);
+            focusCamera.SetActive(true);
+            currentCamera = focusCamera;
+            currentStyle = CameraStyle.Focus;
+            playerMovement.moveSpeed = 1f;
         }
     }
 }
