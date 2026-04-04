@@ -768,38 +768,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1000288713621850022, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
-      propertyPath: SuppressInputWhileBlending
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2499399701448041487, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2499399701448041487, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
-      propertyPath: RecenteringTarget
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2499399701448041487, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
-      propertyPath: HorizontalAxis.Wrap
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2499399701448041487, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
-      propertyPath: HorizontalAxis.Range.x
-      value: -180
-      objectReference: {fileID: 0}
-    - target: {fileID: 2499399701448041487, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
-      propertyPath: HorizontalAxis.Range.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 2499399701448041487, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
-      propertyPath: HorizontalAxis.Recentering.Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2515609041232994246, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
-      propertyPath: recenteringTarget
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2627648990644949373, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -838,18 +806,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2627648990644949373, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3016230779633015882, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
-      propertyPath: BlendHint
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3399840789653262444, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
-      propertyPath: BlendHint
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7402393182759534634, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
-      propertyPath: CenterOnActivate
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8771376100212584949, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
