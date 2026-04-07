@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1813155111456322936}
-  - component: {fileID: 7534317488034676363}
+  - component: {fileID: 1797717633735867561}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 8557339461021067684}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7534317488034676363
+--- !u!114 &1797717633735867561
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,9 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1742043709554377640}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b0f78349c1f669439ff9655be5ce86b, type: 3}
+  m_Script: {fileID: 11500000, guid: c7154a06fcb01274f9b9774b49b78773, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectileHandling
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileAttributes
+  Damage: 50
   rb: {fileID: 3587482782683509385}
 --- !u!1001 &8163759056761818703
 PrefabInstance:
@@ -120,9 +121,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 082fcf2c2f147764d85c7872d7552ac7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3587482782683509385}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 082fcf2c2f147764d85c7872d7552ac7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4823284147948608275}
   m_SourcePrefab: {fileID: 100100000, guid: 082fcf2c2f147764d85c7872d7552ac7, type: 3}
 --- !u!4 &8557339461021067684 stripped
 Transform:
@@ -183,16 +181,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &4823284147948608275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9046067309519024926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7154a06fcb01274f9b9774b49b78773, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectileAttributes
-  Damage: 50

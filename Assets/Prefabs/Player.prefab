@@ -872,8 +872,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2627648990644949373}
-  - component: {fileID: 181033206084953080}
   - component: {fileID: 2515609041232994246}
+  - component: {fileID: 2039513990358510180}
+  - component: {fileID: 8822545256233009836}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -899,19 +900,6 @@ Transform:
   - {fileID: 3057123213973104675}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &181033206084953080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8771376100212584949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a2265955e256014e84d4a77d9f68931, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BowFiring
-  cameraScript: {fileID: 2515609041232994246}
 --- !u!114 &2515609041232994246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -933,6 +921,35 @@ MonoBehaviour:
   defaultCamera: {fileID: 5465209385226867290}
   focusCamera: {fileID: 743323336489435089}
   currentStyle: 0
+--- !u!114 &2039513990358510180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8771376100212584949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da91788b3f66c0542b808b72e3a24d50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttributes
+  goldQuantity: {fileID: 0}
+--- !u!114 &8822545256233009836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8771376100212584949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2265955e256014e84d4a77d9f68931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BowFiring
+  cameraScript: {fileID: 2515609041232994246}
+  projectile: {fileID: 1742043709554377640, guid: 196d55d9de91d4a4fbcccd42afbc8c87, type: 3}
+  player: {fileID: 8534384115507448616}
+  pCamera: {fileID: 743323336489435089}
 --- !u!1 &8971400832579376457
 GameObject:
   m_ObjectHideFlags: 0

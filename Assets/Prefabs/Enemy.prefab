@@ -180,3 +180,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterAttributes
   MaxHealth: 100
+  value: 50
+  playerAttributes: {fileID: 2039513990358510180, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
