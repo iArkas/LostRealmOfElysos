@@ -15,13 +15,13 @@ public class BuildingStatus : MonoBehaviour
         buildings.Add("BlacksmithL3", false);
     }
 
-    private Dictionary<string, bool> getBuildings()
+    private Dictionary<string, bool> GetBuildings()
     {
         return buildings;
     }
 
 
-    private void newBuilding(string building)
+    private void NewBuilding(string building)
     {
         foreach (var item in buildings)
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileAttributes : MonoBehaviour
 {
-    public float Damage;
+    public float damage = 50;
     public Rigidbody rb;
 
     public void Awake()

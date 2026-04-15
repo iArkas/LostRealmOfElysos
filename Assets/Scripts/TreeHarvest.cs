@@ -1,19 +1,17 @@
-using System.Runtime.CompilerServices;
-using System.Xml.Serialization;
 using UnityEngine;
 
-public class EnemyAttributes : MonoBehaviour
+public class TreeHarvest : MonoBehaviour
 {
     private float CurrentHealth;
     public float MaxHealth;
     private bool canTakeDamage = true;
-    public int value;
-
-    public PlayerAttributes playerAttributes;
+    private Animator treeAnim;
+    public GameObject logs;
 
     private void Start()
     {
         CurrentHealth = MaxHealth;
+        treeAnim = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,17 +20,17 @@ public class EnemyAttributes : MonoBehaviour
         if (other.transform.parent.gameObject.GetComponent<ProjectileAttributes>())
         {
             TakeDamage(other);
-            Debug.Log("Enemy hit");
+            Debug.Log("Tree hit");
         }
     }
 
     private void CheckHealth()
     {
-        Debug.Log("Current enemy health: " + CurrentHealth);
+        Debug.Log("Current tree health: " + CurrentHealth);
         if (CurrentHealth <= 0)
         {
-            playerAttributes.AddResource("gold", value);
-            Destroy(this.gameObject);
+            treeAnim.SetTrigger("TreeCanFall");
+            Invoke("TreeDestroyed", 2);
         }
     }
 
@@ -51,5 +49,11 @@ public class EnemyAttributes : MonoBehaviour
     private void DamageCooldown()
     {
         canTakeDamage = true;
+    }
+
+    private void TreeDestroyed()
+    {
+        Instantiate(logs, this.transform.position + Vector3.up * 3f, this.transform.rotation);
+        Destroy(this.gameObject);
     }
 }
