@@ -41,15 +41,16 @@ public class UpgradeWeapon : MonoBehaviour
     public void OnTriggerStay(Collider other)
     {
         interactAction = InputSystem.actions.FindAction("Interact");
-        if (interactAction.WasPressedThisFrame())
+        if (interactAction.WasPressedThisDynamicUpdate())
         {
             Debug.Log("Interact pressed");
             int gold = playerAttributes.GetResource("gold");
-            if (gold > cost)
+            if (gold >= cost)
             {
                 playerAttributes.RemoveResource("gold", cost);
                 bowLevel++;
                 projectileAttributes.damage += projectileAttributes.damage + 10;
+                Debug.Log("Bow Upgraded (Damage +10)");
             }
             else { Debug.Log("Not enough gold"); }
         }

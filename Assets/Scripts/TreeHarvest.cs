@@ -16,11 +16,9 @@ public class TreeHarvest : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger Entered");
         if (other.transform.parent.gameObject.GetComponent<ProjectileAttributes>())
         {
             TakeDamage(other);
-            Debug.Log("Tree hit");
         }
     }
 

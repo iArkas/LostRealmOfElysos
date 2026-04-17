@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEditor.UIElements;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 
 public class BuildingStatus : MonoBehaviour
 {
@@ -10,18 +11,24 @@ public class BuildingStatus : MonoBehaviour
 
     void Start()
     {
-        buildings.Add("BlacksmithL1", false);
-        buildings.Add("BlacksmithL2", false);
-        buildings.Add("BlacksmithL3", false);
+        if (buildings == null)
+        {
+            buildings = new Dictionary<string, bool>()
+            {
+                {"BlacksmithL1", false },
+                {"BlacksmithL2", false },
+                {"BlacksmithL3", false }
+            };
+        }
     }
 
-    private Dictionary<string, bool> GetBuildings()
+    public Dictionary<string, bool> GetBuildings()
     {
         return buildings;
     }
 
 
-    private void NewBuilding(string building)
+    public void BuildBuilding(string building)
     {
         foreach (var item in buildings)
         {

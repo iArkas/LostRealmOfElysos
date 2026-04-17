@@ -9,15 +9,18 @@ public class PlayerAttributes : MonoBehaviour
 
     public TMP_Text goldQuantity;
     public TMP_Text logsQuantity;
-    public Dictionary<string, int> playerResources;
+    public static Dictionary<string, int> playerResources;
 
-    private void Start()
+    private void Awake()
     {
-        playerResources = new Dictionary<string, int>()
+        if (playerResources == null)
         {
-            {"gold", 0 },
-            {"logs", 0 }
-        };
+            playerResources = new Dictionary<string, int>()
+            {
+                {"gold", 0 },
+                {"logs", 60 }
+            };
+        }
     }
 
     public void AddResource(string resourceToAdd, int quantity)

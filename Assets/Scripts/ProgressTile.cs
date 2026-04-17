@@ -18,5 +18,10 @@ public class ProgressTile : MonoBehaviour
             SceneManager.LoadScene("Tile" + level);
         }
     }
+
+    public void ResetLevel()
+    {
+        level = 0;
+    }
 }
 

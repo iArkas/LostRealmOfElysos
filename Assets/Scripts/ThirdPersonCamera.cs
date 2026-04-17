@@ -82,14 +82,14 @@ public class ThirdPersonCamera : MonoBehaviour
             defaultCamera.SetActive(true);
             currentCamera = defaultCamera;
             currentStyle = CameraStyle.Default;
-            playerMovement.moveSpeed = 5f;
+            playerMovement.groundDrag = 5f;
         }
         if (newStyle == CameraStyle.Focus)
         {
             focusCamera.SetActive(true);
             currentCamera = focusCamera;
             currentStyle = CameraStyle.Focus;
-            playerMovement.moveSpeed = 1f;
+            playerMovement.groundDrag = 25f;
         }
     }
 }
