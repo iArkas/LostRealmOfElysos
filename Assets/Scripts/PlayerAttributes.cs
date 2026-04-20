@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.AdaptivePerformance.Editor;
 using UnityEngine;
-using UnityEngine.WSA;
 
 public class PlayerAttributes : MonoBehaviour
 {
@@ -18,7 +16,7 @@ public class PlayerAttributes : MonoBehaviour
             playerResources = new Dictionary<string, int>()
             {
                 {"gold", 0 },
-                {"logs", 60 }
+                {"logs", 40 }
             };
         }
     }

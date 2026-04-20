@@ -1,4 +1,3 @@
-using Mono.Cecil;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +8,6 @@ public class UpgradeBuilding : MonoBehaviour
     public BuildingStatus buildingStatus;
     public string resourceTypeNeeded;
     public int resourceCost;
-    private bool interactPressed;
 
     private void OnTriggerStay(Collider other)
     {
@@ -22,10 +20,10 @@ public class UpgradeBuilding : MonoBehaviour
             {
                 if (playerAttributes.GetResource(resourceTypeNeeded) >= resourceCost)
                 {
+                    playerAttributes.RemoveResource(resourceTypeNeeded, resourceCost);
+                    buildingStatus.BuildBuilding(nextBuildingUpgrade, this.gameObject);
                     this.gameObject.SetActive(false);
                     nextBuildingUpgrade.SetActive(true);
-                    playerAttributes.RemoveResource(resourceTypeNeeded, resourceCost);
-                    buildingStatus.BuildBuilding(nextBuildingUpgrade.ToString());
                 }
             }
         }

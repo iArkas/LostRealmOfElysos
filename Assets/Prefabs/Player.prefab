@@ -867,7 +867,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b954b62701c7db4da4b1c2d5589e714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourcePickup
-  resourceType: 
   playerAttributes: {fileID: 2039513990358510180}
 --- !u!1 &7365441502543601944
 GameObject:
@@ -912,6 +911,7 @@ GameObject:
   - component: {fileID: 2515609041232994246}
   - component: {fileID: 2039513990358510180}
   - component: {fileID: 8822545256233009836}
+  - component: {fileID: 5722732342217762904}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -957,6 +957,7 @@ MonoBehaviour:
   rotationSpeed: 5
   defaultCamera: {fileID: 5465209385226867290}
   focusCamera: {fileID: 743323336489435089}
+  crosshair: {fileID: 0}
   currentStyle: 0
 --- !u!114 &2039513990358510180
 MonoBehaviour:
@@ -988,6 +989,19 @@ MonoBehaviour:
   projectile: {fileID: 1742043709554377640, guid: 196d55d9de91d4a4fbcccd42afbc8c87, type: 3}
   player: {fileID: 8534384115507448616}
   pCamera: {fileID: 743323336489435089}
+--- !u!114 &5722732342217762904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8771376100212584949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 279e1a2cd890fc1419502d8267205a80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseGame
+  pauseMenu: {fileID: 7407500355852016895, guid: ae0aea3869b17e042899343aea0eaa40, type: 3}
 --- !u!1 &8971400832579376457
 GameObject:
   m_ObjectHideFlags: 0

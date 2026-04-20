@@ -1,8 +1,6 @@
-using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class UpgradeWeapon : MonoBehaviour
 {
@@ -25,7 +23,6 @@ public class UpgradeWeapon : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("trigger entered");
         foreach (int dictKey in bowUpgradeCost.Keys)
         {
             Debug.Log(dictKey);
@@ -41,18 +38,15 @@ public class UpgradeWeapon : MonoBehaviour
     public void OnTriggerStay(Collider other)
     {
         interactAction = InputSystem.actions.FindAction("Interact");
-        if (interactAction.WasPressedThisDynamicUpdate())
+        if (interactAction.WasPressedThisFrame())
         {
-            Debug.Log("Interact pressed");
             int gold = playerAttributes.GetResource("gold");
             if (gold >= cost)
             {
                 playerAttributes.RemoveResource("gold", cost);
                 bowLevel++;
                 projectileAttributes.damage += projectileAttributes.damage + 10;
-                Debug.Log("Bow Upgraded (Damage +10)");
             }
-            else { Debug.Log("Not enough gold"); }
         }
     }
 }

@@ -1,40 +1,66 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System;
-using UnityEditor.UIElements;
-using System.Linq;
-using UnityEditor.Experimental.GraphView;
 
 public class BuildingStatus : MonoBehaviour
 {
-    public Dictionary<string, bool> buildings;
+    public List<List<GameObject>> buildingsStatus;
+    public List<GameObject> blacksmiths;
+    public List<GameObject> buildings;
+    public static List<string> activeBuildings;
+    private bool upgradedBuilding = false;
 
     void Start()
     {
-        if (buildings == null)
+        if (buildingsStatus == null)
         {
-            buildings = new Dictionary<string, bool>()
+            buildingsStatus = new List<List<GameObject>>()
             {
-                {"BlacksmithL1", false },
-                {"BlacksmithL2", false },
-                {"BlacksmithL3", false }
+                blacksmiths
             };
         }
-    }
-
-    public Dictionary<string, bool> GetBuildings()
-    {
-        return buildings;
-    }
-
-
-    public void BuildBuilding(string building)
-    {
-        foreach (var item in buildings)
+        if (activeBuildings == null)
         {
-            if (item.Key == building)
+            activeBuildings = new List<string>();
+        }
+        foreach (string item in activeBuildings)
+        {
+            Debug.Log(item);
+        }
+        LoadBuildings(buildingsStatus);
+    }
+
+    public List<List<GameObject>> GetBuildings()
+    {
+        return buildingsStatus;
+    }
+
+
+    public void BuildBuilding(GameObject newBuilding, GameObject oldBuilding)
+    {
+        activeBuildings.Add(newBuilding.name);
+        activeBuildings.Remove(oldBuilding.name);
+    }
+
+    public void LoadBuildings(List<List<GameObject>> buildingsStatus)
+    {
+        foreach (List<GameObject> buildingType in buildingsStatus)
+        {
+            foreach (GameObject building in buildingType)
             {
-                buildings[item.Key] = true;
+                if (activeBuildings.Contains(building.name))
+                {
+                    building.SetActive(true);
+                    upgradedBuilding = true;
+                }
+                else
+                {
+                    building.SetActive(false);
+                }
+            }
+            if (!upgradedBuilding)
+            {
+                buildingType[0].SetActive(true);
+                upgradedBuilding = false;
             }
         }
     }

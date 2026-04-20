@@ -14628,6 +14628,10 @@ PrefabInstance:
       propertyPath: logsQuantity
       value: 
       objectReference: {fileID: 1946201478}
+    - target: {fileID: 2515609041232994246, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 2650759285990764427}
     - target: {fileID: 2627648990644949373, guid: a4507be22b89c0744b582e061ddc2762, type: 3}
       propertyPath: m_LocalPosition.x
       value: -25.6
@@ -36744,6 +36748,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c86b047f3b4ae0940847783e574a6c9e, type: 3}
+--- !u!1 &2650759285990764427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7329590853317813662, guid: c86b047f3b4ae0940847783e574a6c9e, type: 3}
+  m_PrefabInstance: {fileID: 2650759285990764426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6792692606212645102
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,3 @@
-using System;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,6 +14,8 @@ public class ThirdPersonCamera : MonoBehaviour
     public GameObject defaultCamera;
     public GameObject focusCamera;
     private GameObject currentCamera;
+
+    public GameObject crosshair;
 
     public CameraStyle currentStyle = CameraStyle.Default;
 
@@ -83,6 +82,7 @@ public class ThirdPersonCamera : MonoBehaviour
             currentCamera = defaultCamera;
             currentStyle = CameraStyle.Default;
             playerMovement.groundDrag = 5f;
+            crosshair.SetActive(false);
         }
         if (newStyle == CameraStyle.Focus)
         {
@@ -90,6 +90,7 @@ public class ThirdPersonCamera : MonoBehaviour
             currentCamera = focusCamera;
             currentStyle = CameraStyle.Focus;
             playerMovement.groundDrag = 25f;
+            crosshair.SetActive(true);
         }
     }
 }

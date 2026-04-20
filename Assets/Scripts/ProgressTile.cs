@@ -1,4 +1,4 @@
-using Unity.VectorGraphics;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,12 +8,16 @@ public class ProgressTile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (level ==3 )
+        
+        if (level == 3)
         {
+            Debug.Log("Level is " + level);
             SceneManager.LoadScene("Camp");
+            level = 0;
         }
         else
         {
+            Debug.Log("Level is " + level);
             level++;
             SceneManager.LoadScene("Tile" + level);
         }
@@ -24,4 +28,3 @@ public class ProgressTile : MonoBehaviour
         level = 0;
     }
 }
-

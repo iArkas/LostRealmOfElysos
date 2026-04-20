@@ -396,12 +396,12 @@ GameObject:
   - component: {fileID: 3613118124482270469}
   - component: {fileID: 893865746812324343}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7862325086077449567
 RectTransform:
   m_ObjectHideFlags: 0
