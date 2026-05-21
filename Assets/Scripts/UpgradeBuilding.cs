@@ -1,31 +1,50 @@
+using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class UpgradeBuilding : MonoBehaviour
 {
-    public GameObject nextBuildingUpgrade;
+    private GameObject nextBuildingUpgrade;
     public PlayerAttributes playerAttributes;
     public BuildingStatus buildingStatus;
-    public string resourceTypeNeeded;
-    public int resourceCost;
+    private string resourceTypeNeeded;
+    private int resourceCost;
+    public PlayerInteract playerInteract;
+    public Button upgradeButton;
+    public SwitchUpgradeTabs tabs;
+    private GameObject oldBuilding;
 
-    private void OnTriggerStay(Collider other)
+    private void Awake()
     {
-        if (other.gameObject.transform.parent.CompareTag("Player"))
+        upgradeButton.onClick.AddListener(DoBuildingUpgrade);
+    }
+
+    private void DoBuildingUpgrade()
+    {
+        string currentTab = tabs.GetCurrentTab();
+        List<GameObject> Buildings = buildingStatus.getBuildingList(currentTab);
+        foreach (GameObject building in Buildings)
         {
-            //display cost
-            var buildings = buildingStatus.GetBuildings();
-            InputAction interact = InputSystem.actions.FindAction("Interact");
-            if (interact.WasPressedThisFrame())
+            if (buildingStatus.getActiveBuildings().Contains(building.name))
             {
-                if (playerAttributes.GetResource(resourceTypeNeeded) >= resourceCost)
-                {
-                    playerAttributes.RemoveResource(resourceTypeNeeded, resourceCost);
-                    buildingStatus.BuildBuilding(nextBuildingUpgrade, this.gameObject);
-                    this.gameObject.SetActive(false);
-                    nextBuildingUpgrade.SetActive(true);
-                }
+                oldBuilding = building;
+            }else
+            {
+                oldBuilding = Buildings[0];
             }
+        }
+        GameObject lastInteract = playerInteract.LastInteract;
+        resourceTypeNeeded = lastInteract.GetComponent<UpgradeBuildingCosts>().getResourceType();
+        resourceCost = lastInteract.GetComponent<UpgradeBuildingCosts>().getResourceCost();
+        nextBuildingUpgrade = lastInteract.GetComponent<UpgradeBuildingCosts>().getNextBuildingUpgrade();
+        if (playerAttributes.GetResource(resourceTypeNeeded) >= resourceCost)
+        {
+            var buildings = buildingStatus.GetBuildings();
+            playerAttributes.RemoveResource(resourceTypeNeeded, resourceCost);
+            buildingStatus.BuildBuilding(nextBuildingUpgrade, oldBuilding);
+            oldBuilding.SetActive(false);
+            nextBuildingUpgrade.SetActive(true);
         }
     }
 }

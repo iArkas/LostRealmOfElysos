@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal.Filters;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
 
     public float jumpForce;
 
-
     bool playingSFX = false;
 
     private void Start()
@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        //Move
         InputAction moveAction = InputSystem.actions.FindAction("Move");
         InputAction jumpAction = InputSystem.actions.FindAction("Jump");
         moveVector = moveAction.ReadValue<Vector2>();
@@ -41,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
         SpeedControl();
 
+        //Walking SFX
         if (moveVector.x != 0 || moveVector.y !=0)
         {
             if (playingSFX == false || !grounded)
@@ -55,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<AudioSource>().Stop();
         }
 
+        //Jump
         if (jumpAction.triggered)
         {
             Jump();

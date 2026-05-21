@@ -15,10 +15,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Tiles/Tile1.unity
     guid: eccee0bd7cf6fd2438fb78cdc0ceb33a
   - enabled: 1
-    path: Assets/Scenes/Tiles/Tile2.unity
+    path: Assets/Scenes/Tiles/Tile4.unity
     guid: 99a0fd3778a8e3f49beb5f443f2c3e0d
   - enabled: 1
-    path: Assets/Scenes/Tiles/Tile3.unity
+    path: Assets/Scenes/Tiles/Tile5.unity
     guid: 21d5c844c9c682a498be395ccd09958c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

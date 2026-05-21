@@ -912,6 +912,7 @@ GameObject:
   - component: {fileID: 2039513990358510180}
   - component: {fileID: 8822545256233009836}
   - component: {fileID: 5722732342217762904}
+  - component: {fileID: 325230206773944629}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1001,7 +1002,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279e1a2cd890fc1419502d8267205a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseGame
-  pauseMenu: {fileID: 7407500355852016895, guid: ae0aea3869b17e042899343aea0eaa40, type: 3}
+  pauseMenu: {fileID: 0}
+--- !u!114 &325230206773944629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8771376100212584949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b13a704a612f0bc47aa439cc383f4080, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
+  defaultCamera: {fileID: 5465209385226867290}
+  player:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &8971400832579376457
 GameObject:
   m_ObjectHideFlags: 0

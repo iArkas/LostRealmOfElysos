@@ -13,7 +13,7 @@ public class UnpauseGame : MonoBehaviour
     public void ContinueGame()
     {
         Time.timeScale = 1;
-        Destroy(pauseMenu);
+        pauseMenu.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }

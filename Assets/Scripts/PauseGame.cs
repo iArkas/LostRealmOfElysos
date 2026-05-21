@@ -13,12 +13,12 @@ public class PauseGame : MonoBehaviour
 
     public void Update()
     {
-        if (pauseAction.WasPressedThisFrame())
+        if (pauseAction.WasPressedThisFrame() && !pauseMenu.activeInHierarchy)
         {
-            Time.timeScale = 0;
-            Instantiate(pauseMenu);
+            pauseMenu.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0;
         }
     }
 }

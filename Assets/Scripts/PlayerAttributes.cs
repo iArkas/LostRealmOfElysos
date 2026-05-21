@@ -16,7 +16,7 @@ public class PlayerAttributes : MonoBehaviour
             playerResources = new Dictionary<string, int>()
             {
                 {"gold", 0 },
-                {"logs", 40 }
+                {"logs", 50 }
             };
         }
     }

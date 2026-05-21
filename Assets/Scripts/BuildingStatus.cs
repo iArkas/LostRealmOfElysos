@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using System.Collections;
 
 public class BuildingStatus : MonoBehaviour
 {
     public List<List<GameObject>> buildingsStatus;
     public List<GameObject> blacksmiths;
-    public List<GameObject> buildings;
     public static List<string> activeBuildings;
     private bool upgradedBuilding = false;
 
@@ -21,10 +22,6 @@ public class BuildingStatus : MonoBehaviour
         if (activeBuildings == null)
         {
             activeBuildings = new List<string>();
-        }
-        foreach (string item in activeBuildings)
-        {
-            Debug.Log(item);
         }
         LoadBuildings(buildingsStatus);
     }
@@ -63,5 +60,26 @@ public class BuildingStatus : MonoBehaviour
                 upgradedBuilding = false;
             }
         }
+    }
+
+    public List<GameObject> getBuildingList(string buildingType)
+    {
+        switch (buildingType)
+        {
+            case "Blacksmith":
+                return blacksmiths;
+            default:
+                return null;
+
+        }
+    }
+
+    public List<string> getActiveBuildings()
+    {
+        foreach (string i in activeBuildings)
+        {
+            Debug.Log(i);
+        }
+        return activeBuildings;
     }
 }

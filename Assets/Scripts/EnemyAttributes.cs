@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-using System.Xml.Serialization;
 using UnityEngine;
 
 public class EnemyAttributes : MonoBehaviour
@@ -18,11 +16,9 @@ public class EnemyAttributes : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger Entered");
         if (other.transform.parent.gameObject.GetComponent<ProjectileAttributes>())
         {
             TakeDamage(other);
-            Debug.Log("Enemy hit");
         }
     }
 

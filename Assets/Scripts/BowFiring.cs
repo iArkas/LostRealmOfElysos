@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder;
 
 public class BowFiring : MonoBehaviour
 {
@@ -18,11 +19,20 @@ public class BowFiring : MonoBehaviour
         attackAction = InputSystem.actions.FindAction("Attack");
         if (cameraScript.currentStyle == ThirdPersonCamera.CameraStyle.Focus && attackAction.WasPressedThisFrame() && canFire)
         {
-            Vector3 endPos = pCamera.transform.position + pCamera.transform.TransformDirection(Vector3.forward) *20f;
-            var targetRotation = Quaternion.LookRotation(endPos - player.transform.position);
-            Instantiate(projectile, player.transform.position, targetRotation);
+            RaycastHit hit;
+            if (Physics.Raycast(pCamera.transform.position, pCamera.transform.TransformDirection(Vector3.forward), out hit, 20f))
+            {
+                var targetRotation = Quaternion.LookRotation(hit.point - player.transform.position);
+                Instantiate(projectile, player.transform.position, targetRotation);
+            }
+            else
+            {
+                Vector3 endPos = pCamera.transform.position + pCamera.transform.TransformDirection(Vector3.forward) * 20f;
+                var targetRotation = Quaternion.LookRotation(endPos - player.transform.position);
+                Instantiate(projectile, player.transform.position, targetRotation);
+            }
             canFire = false;
-            Invoke("FireCooldown", 1);
+            Invoke("FireCooldown", 1f);
         }
     }
 
